@@ -88,7 +88,7 @@ POST http://127.0.0.1:8000/fila
 Content-Type: application/json
 
 {
-  "mensagem": "Olá Jarvis, testando a fila!"
+  "mensagem": "Olá, testando a fila!"
 }
 
 ## 5. Testar filas SQS/LocalStack
