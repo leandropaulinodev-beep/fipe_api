@@ -1,0 +1,54 @@
+version: '3.8'
+
+services:
+  app:
+    build: .
+    container_name: fipe-api-app
+    ports:
+      - "8000:80"
+    volumes:
+      - ./:/var/www  
+    environment:
+      DB_HOST: db
+      DB_DATABASE: fipe
+      DB_USERNAME: root
+      DB_PASSWORD: root
+      CACHE_DRIVER: redis
+      QUEUE_CONNECTION: sync
+    depends_on:
+      - db
+      - redis
+      - localstack
+    command: >
+      sh -c "php artisan serve --host=0.0.0.0 --port=8000"
+
+  db:
+    image: mysql:8
+    container_name: fipe-api-db
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: fipe
+    ports:
+      - "3306:3306"
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      interval: 10s
+      retries: 5
+      timeout: 5s
+
+  redis:
+    image: redis:latest
+    container_name: fipe-api-redis
+    ports:
+      - "6379:6379"
+
+  localstack:
+    image: localstack/localstack:latest
+    container_name: localstack
+    ports:
+      - "4566:4566"
+    environment:
+      - SERVICES=sqs
+      - DEBUG=1
+    volumes:
+      - "./localstack:/var/lib/localstack"
