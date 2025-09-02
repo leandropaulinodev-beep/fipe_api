@@ -1,6 +1,4 @@
-<<<<<<< HEAD
-
-# FIPE API - Guia Completo de Testes Locais
+# FIPE API - README Completo de Testes Locais - por Leandro Paulino
 
 ## 1. Configuração do .env
 
@@ -10,7 +8,7 @@ DB_HOST=127.0.0.1
 DB_PORT=3306
 DB_DATABASE=fipe
 DB_USERNAME=root
-DB_PASSWORD=root # se não tiver senha, deixar vazio
+DB_PASSWORD=root 
 QUEUE_CONNECTION=sqs
 SQS_KEY=test
 SQS_SECRET=test
@@ -106,7 +104,7 @@ Conferir logs em storage/logs/laravel.log:
 
 ## 6. Dicas adicionais
 
-- Para teste rápido de API, criar endpoint /teste:
+- Para teste da API, criar endpoint /teste:
 Route::get('/teste', function() {
     return response()->json(['status'=>'ok','time'=>now()]);
 });
