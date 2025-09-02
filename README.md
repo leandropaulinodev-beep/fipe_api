@@ -205,7 +205,7 @@ Este documento cobre todo o fluxo de configuração, execução e teste do proje
 - `PUT /api/clientes/:id` — atualiza dados e endereço
 - `DELETE /api/clientes/:id` — remove
 
-## Dicas e anotações (estilo aula)
+## Ponto de atenção
 
 - **Sequelize** é o ORM que mapeia JS ⇄ SQL. Cada `define` vira uma tabela.
 - `sequelize.sync({ alter: true })` atualiza o schema conforme os models (bom pra dev). Em produção, prefira **migrations**.
